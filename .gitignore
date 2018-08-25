@@ -2,3 +2,4 @@
 .DS_Store
 /js/three.js
 /js/three.min.js
+/js/OrbitControl.js
