@@ -38,10 +38,10 @@
 				new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('images/custom-cult-logo-50px.png'),side: THREE.DoubleSide}), // bottom
 				new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('images/frisk.jpg'),side: THREE.DoubleSide}), // front
 				new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('images/matt645x3000.jpg'),side: THREE.DoubleSide}), // back
-			]
+			];
 
 			//create material color or image texture
-			var material = new THREE.MeshBasicMaterial({color: 0xffffff, wireframe: true, });
+			var material = new THREE.MeshFaceMaterial(cubeMaterials);
 			var cube = new THREE.Mesh(geometry, material);
 			scene.add(cube);
 
