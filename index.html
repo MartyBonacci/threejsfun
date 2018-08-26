@@ -32,11 +32,11 @@
 			//create the shape
 			var geometry = new THREE.BoxGeometry(2,2,2);
 			var cubeMaterials = [
-				new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('images/jim606x3000.jpg'),side: THREE.DoubleSide}), // right
-				new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('images/chara.jpg'),side: THREE.DoubleSide}), // left
-				new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('images/chara.png'),side: THREE.DoubleSide}), // top
-				new THREE.MeshBasicMaterial({color: 0xffffff,side: THREE.DoubleSide}), // bottom
-				new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('images/frisk.jpg'),side: THREE.DoubleSide}), // front
+				new THREE.MeshLambertMaterial({map: new THREE.TextureLoader().load('images/jim606x3000.jpg'),side: THREE.DoubleSide}), // right
+				new THREE.MeshPhongMaterial({map: new THREE.TextureLoader().load('images/chara.jpg'),side: THREE.DoubleSide}), // left
+				new THREE.MeshLambertMaterial({map: new THREE.TextureLoader().load('images/chara.png'),side: THREE.DoubleSide}), // top
+				new THREE.MeshLambertMaterial({color: 0xffffff,side: THREE.DoubleSide}), // bottom
+				new THREE.MeshPhongMaterial({map: new THREE.TextureLoader().load('images/frisk.jpg'),side: THREE.DoubleSide}), // front
 				new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('images/matt645x3000.jpg'),side: THREE.DoubleSide}), // back
 			];
 
@@ -47,10 +47,68 @@
 
 			camera.position.z =3;
 
+			// Floor
+			var floorGeometry = new THREE.CubeGeometry( 10, 1, 10 );
+			var floorMaterial = new THREE.MeshLambertMaterial( { map: new THREE.TextureLoader( ).load( 'images/Ground.jpg' ), side: THREE.DoubleSide } );
+			var floorCube = new THREE.Mesh( floorGeometry, floorMaterial );
+			floorCube.position.y = -5;
+			scene.add( floorCube );
+			// Ceiling
+			var ceilingGeometry = new THREE.CubeGeometry( 10, 1, 10 );
+			var ceilingMaterial = new THREE.MeshLambertMaterial( { map: new THREE.TextureLoader( ).load( 'images/Ceiling.jpg' ), side: THREE.DoubleSide } );
+			var ceilingCube = new THREE.Mesh( ceilingGeometry, ceilingMaterial );
+			ceilingCube.position.y = 5;
+			scene.add( ceilingCube );
+			// Left Wall
+			var leftWallGeometry = new THREE.CubeGeometry( 1, 10, 10 );
+			var leftWallMaterial = new THREE.MeshLambertMaterial( { map: new THREE.TextureLoader( ).load( 'images/Wall.jpg' ), side: THREE.DoubleSide } );
+			var leftWallCube = new THREE.Mesh( leftWallGeometry, leftWallMaterial );
+			leftWallCube.position.x = -5;
+			scene.add( leftWallCube );
+			// Right Wall
+			var rightWallGeometry = new THREE.CubeGeometry( 1, 10, 10 );
+			var rightWallMaterial = new THREE.MeshLambertMaterial( { map: new THREE.TextureLoader( ).load( 'images/Wall.jpg' ), side: THREE.DoubleSide } );
+			var rightWallCube = new THREE.Mesh( rightWallGeometry, rightWallMaterial );
+			rightWallCube.position.x = 5;
+			scene.add( rightWallCube );
+
+			var ambientLigth = new THREE.AmbientLight(0xffffff, 0.8);
+			// scene.add(ambientLigth);
+
+			var light1 = new THREE.PointLight(0xff0040, 1.2, 50);
+			// scene.add(light1);
+
+			var light2 = new THREE.PointLight(0x0040ff, 1.1, 50);
+			// scene.add(light2);
+
+			var light3 = new THREE.PointLight(0x80ff80, 1.05, 50);
+			// scene.add(light3);
+
+			var directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+			directionalLight.position.set(0, 1, 0);
+			// scene.add(directionalLight);
+
+			var spotLight = new THREE.SpotLight(0xff45f6, 25);
+			spotLight.position.set(0, 3, 0);
+			scene.add(spotLight);
+
 			// game logic
 			var update = function(){
 				// cube.rotation.x += .01;
 				cube.rotation.y += .005;
+
+				var time = Date.now() * 0.0005;
+				light1.position.x = Math.sin(time * 0.7) * 30;
+				light1.position.y = Math.cos(time * 0.5) * 30;
+				light1.position.z = Math.cos(time * 0.3) * 30;
+
+				light2.position.x = Math.cos(time * 0.3) * 30;
+				light2.position.y = Math.sin(time * 0.5) * 30;
+				light2.position.z = Math.sin(time * 0.7) * 30;
+
+				light3.position.x = Math.sin(time * 0.7) * 30;
+				light3.position.y = Math.cos(time * 0.3) * 30;
+				light3.position.z = Math.sin(time * 0.5) * 30;
 			};
 
 			// draw scene
