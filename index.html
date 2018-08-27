@@ -9,8 +9,13 @@
 		</style>
 	</head>
 	<body>
+		<script src="/node_modules/three/examples/js/Detector.js"></script>
 		<script src="js/three.js"></script>
 		<script src="js/OrbitControls.js"></script>
+		<script src="/node_modules/three/examples/js/libs/dat.gui.min.js"></script>
+		<script src="node_modules/three/examples/js/loaders/LoaderSupport.js"></script>
+		<script src="js/OBJLoader2.js"></script>
+
 
 		<script>
 			var scene = new THREE.Scene();
@@ -28,6 +33,28 @@
 			});
 
 			controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+			var loader = new THREE.OBJLoader2();
+
+			// loader.load
+			// (
+			// 	'models/female02.obj',
+			// 	function (object){
+			// 		scene.add(object);
+			// 	}
+			// );
+
+
+			// function called on successful load
+			var callbackOnLoad = function ( event ) {
+				scene.add( event.detail.loaderRootNode );
+			};
+
+
+
+			// load a resource from provided URL synchronously
+			loader.load( 'models/box-blender.obj', callbackOnLoad, null, null, null, false );
+
 
 			//create the shape
 			var geometry = new THREE.BoxGeometry(2,2,2);
@@ -47,33 +74,33 @@
 
 			camera.position.z =3;
 
-			// Floor
-			var floorGeometry = new THREE.CubeGeometry( 10, 1, 10 );
-			var floorMaterial = new THREE.MeshLambertMaterial( { map: new THREE.TextureLoader( ).load( 'images/Ground.jpg' ), side: THREE.DoubleSide } );
-			var floorCube = new THREE.Mesh( floorGeometry, floorMaterial );
-			floorCube.position.y = -5;
-			scene.add( floorCube );
-			// Ceiling
-			var ceilingGeometry = new THREE.CubeGeometry( 10, 1, 10 );
-			var ceilingMaterial = new THREE.MeshLambertMaterial( { map: new THREE.TextureLoader( ).load( 'images/Ceiling.jpg' ), side: THREE.DoubleSide } );
-			var ceilingCube = new THREE.Mesh( ceilingGeometry, ceilingMaterial );
-			ceilingCube.position.y = 5;
-			scene.add( ceilingCube );
-			// Left Wall
-			var leftWallGeometry = new THREE.CubeGeometry( 1, 10, 10 );
-			var leftWallMaterial = new THREE.MeshLambertMaterial( { map: new THREE.TextureLoader( ).load( 'images/Wall.jpg' ), side: THREE.DoubleSide } );
-			var leftWallCube = new THREE.Mesh( leftWallGeometry, leftWallMaterial );
-			leftWallCube.position.x = -5;
-			scene.add( leftWallCube );
-			// Right Wall
-			var rightWallGeometry = new THREE.CubeGeometry( 1, 10, 10 );
-			var rightWallMaterial = new THREE.MeshLambertMaterial( { map: new THREE.TextureLoader( ).load( 'images/Wall.jpg' ), side: THREE.DoubleSide } );
-			var rightWallCube = new THREE.Mesh( rightWallGeometry, rightWallMaterial );
-			rightWallCube.position.x = 5;
-			scene.add( rightWallCube );
+			// // Floor
+			// var floorGeometry = new THREE.CubeGeometry( 10, 1, 10 );
+			// var floorMaterial = new THREE.MeshLambertMaterial( { map: new THREE.TextureLoader( ).load( 'images/Ground.jpg' ), side: THREE.DoubleSide } );
+			// var floorCube = new THREE.Mesh( floorGeometry, floorMaterial );
+			// floorCube.position.y = -5;
+			// scene.add( floorCube );
+			// // Ceiling
+			// var ceilingGeometry = new THREE.CubeGeometry( 10, 1, 10 );
+			// var ceilingMaterial = new THREE.MeshLambertMaterial( { map: new THREE.TextureLoader( ).load( 'images/Ceiling.jpg' ), side: THREE.DoubleSide } );
+			// var ceilingCube = new THREE.Mesh( ceilingGeometry, ceilingMaterial );
+			// ceilingCube.position.y = 5;
+			// scene.add( ceilingCube );
+			// // Left Wall
+			// var leftWallGeometry = new THREE.CubeGeometry( 1, 10, 10 );
+			// var leftWallMaterial = new THREE.MeshLambertMaterial( { map: new THREE.TextureLoader( ).load( 'images/Wall.jpg' ), side: THREE.DoubleSide } );
+			// var leftWallCube = new THREE.Mesh( leftWallGeometry, leftWallMaterial );
+			// leftWallCube.position.x = -5;
+			// scene.add( leftWallCube );
+			// // Right Wall
+			// var rightWallGeometry = new THREE.CubeGeometry( 1, 10, 10 );
+			// var rightWallMaterial = new THREE.MeshLambertMaterial( { map: new THREE.TextureLoader( ).load( 'images/Wall.jpg' ), side: THREE.DoubleSide } );
+			// var rightWallCube = new THREE.Mesh( rightWallGeometry, rightWallMaterial );
+			// rightWallCube.position.x = 5;
+			// scene.add( rightWallCube );
 
 			var ambientLigth = new THREE.AmbientLight(0xffffff, 0.8);
-			// scene.add(ambientLigth);
+			scene.add(ambientLigth);
 
 			var light1 = new THREE.PointLight(0xff0040, 1.2, 50);
 			// scene.add(light1);
@@ -95,20 +122,20 @@
 			// game logic
 			var update = function(){
 				// cube.rotation.x += .01;
-				cube.rotation.y += .005;
-
-				var time = Date.now() * 0.0005;
-				light1.position.x = Math.sin(time * 0.7) * 30;
-				light1.position.y = Math.cos(time * 0.5) * 30;
-				light1.position.z = Math.cos(time * 0.3) * 30;
-
-				light2.position.x = Math.cos(time * 0.3) * 30;
-				light2.position.y = Math.sin(time * 0.5) * 30;
-				light2.position.z = Math.sin(time * 0.7) * 30;
-
-				light3.position.x = Math.sin(time * 0.7) * 30;
-				light3.position.y = Math.cos(time * 0.3) * 30;
-				light3.position.z = Math.sin(time * 0.5) * 30;
+				// 	cube.rotation.y += .005;
+				//
+				// 	var time = Date.now() * 0.0005;
+				// 	light1.position.x = Math.sin(time * 0.7) * 30;
+				// 	light1.position.y = Math.cos(time * 0.5) * 30;
+				// 	light1.position.z = Math.cos(time * 0.3) * 30;
+				//
+				// 	light2.position.x = Math.cos(time * 0.3) * 30;
+				// 	light2.position.y = Math.sin(time * 0.5) * 30;
+				// 	light2.position.z = Math.sin(time * 0.7) * 30;
+				//
+				// 	light3.position.x = Math.sin(time * 0.7) * 30;
+				// 	light3.position.y = Math.cos(time * 0.3) * 30;
+				// 	light3.position.z = Math.sin(time * 0.5) * 30;
 			};
 
 			// draw scene

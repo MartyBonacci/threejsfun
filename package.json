@@ -1,0 +1,9 @@
+{
+  "name": "threejsjun",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "three": "^0.95.0"
+  },
+  "scripts": {
+}}
