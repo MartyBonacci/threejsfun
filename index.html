@@ -53,26 +53,26 @@
 
 
 			// load a resource from provided URL synchronously
-			loader.load( 'models/box-blender.obj', callbackOnLoad, null, null, null, false );
+			loader.load( 'models/box-normals-out.obj', callbackOnLoad, null, null, null, false );
 
 
 			//create the shape
-			var geometry = new THREE.BoxGeometry(2,2,2);
-			var cubeMaterials = [
-				new THREE.MeshLambertMaterial({map: new THREE.TextureLoader().load('images/jim606x3000.jpg'),side: THREE.DoubleSide}), // right
-				new THREE.MeshPhongMaterial({map: new THREE.TextureLoader().load('images/chara.jpg'),side: THREE.DoubleSide}), // left
-				new THREE.MeshLambertMaterial({map: new THREE.TextureLoader().load('images/chara.png'),side: THREE.DoubleSide}), // top
-				new THREE.MeshLambertMaterial({color: 0xffffff,side: THREE.DoubleSide}), // bottom
-				new THREE.MeshPhongMaterial({map: new THREE.TextureLoader().load('images/frisk.jpg'),side: THREE.DoubleSide}), // front
-				new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('images/matt645x3000.jpg'),side: THREE.DoubleSide}), // back
-			];
+			// var geometry = new THREE.BoxGeometry(2,2,2);
+			// var cubeMaterials = [
+			// 	new THREE.MeshLambertMaterial({map: new THREE.TextureLoader().load('images/jim606x3000.jpg'),side: THREE.DoubleSide}), // right
+			// 	new THREE.MeshPhongMaterial({map: new THREE.TextureLoader().load('images/chara.jpg'),side: THREE.DoubleSide}), // left
+			// 	new THREE.MeshLambertMaterial({map: new THREE.TextureLoader().load('images/chara.png'),side: THREE.DoubleSide}), // top
+			// 	new THREE.MeshLambertMaterial({color: 0xffffff,side: THREE.DoubleSide}), // bottom
+			// 	new THREE.MeshPhongMaterial({map: new THREE.TextureLoader().load('images/frisk.jpg'),side: THREE.DoubleSide}), // front
+			// 	new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('images/matt645x3000.jpg'),side: THREE.DoubleSide}), // back
+			// ];
 
 			//create material color or image texture
-			var material = new THREE.MeshFaceMaterial(cubeMaterials);
-			var cube = new THREE.Mesh(geometry, material);
-			scene.add(cube);
+			// var material = new THREE.MeshFaceMaterial(cubeMaterials);
+			// var cube = new THREE.Mesh(geometry, material);
+			// scene.add(cube);
 
-			camera.position.z =3;
+			camera.position.z =13;
 
 			// // Floor
 			// var floorGeometry = new THREE.CubeGeometry( 10, 1, 10 );
@@ -103,17 +103,17 @@
 			scene.add(ambientLigth);
 
 			var light1 = new THREE.PointLight(0xff0040, 1.2, 50);
-			// scene.add(light1);
+			scene.add(light1);
 
 			var light2 = new THREE.PointLight(0x0040ff, 1.1, 50);
-			// scene.add(light2);
+			scene.add(light2);
 
 			var light3 = new THREE.PointLight(0x80ff80, 1.05, 50);
-			// scene.add(light3);
+			scene.add(light3);
 
 			var directionalLight = new THREE.DirectionalLight(0xffffff, 1);
 			directionalLight.position.set(0, 1, 0);
-			// scene.add(directionalLight);
+			scene.add(directionalLight);
 
 			var spotLight = new THREE.SpotLight(0xff45f6, 25);
 			spotLight.position.set(0, 3, 0);
@@ -124,18 +124,18 @@
 				// cube.rotation.x += .01;
 				// 	cube.rotation.y += .005;
 				//
-				// 	var time = Date.now() * 0.0005;
-				// 	light1.position.x = Math.sin(time * 0.7) * 30;
-				// 	light1.position.y = Math.cos(time * 0.5) * 30;
-				// 	light1.position.z = Math.cos(time * 0.3) * 30;
-				//
-				// 	light2.position.x = Math.cos(time * 0.3) * 30;
-				// 	light2.position.y = Math.sin(time * 0.5) * 30;
-				// 	light2.position.z = Math.sin(time * 0.7) * 30;
-				//
-				// 	light3.position.x = Math.sin(time * 0.7) * 30;
-				// 	light3.position.y = Math.cos(time * 0.3) * 30;
-				// 	light3.position.z = Math.sin(time * 0.5) * 30;
+					var time = Date.now() * 0.0005;
+					light1.position.x = Math.sin(time * 0.7) * 30;
+					light1.position.y = Math.cos(time * 0.5) * 30;
+					light1.position.z = Math.cos(time * 0.3) * 30;
+
+					light2.position.x = Math.cos(time * 0.3) * 30;
+					light2.position.y = Math.sin(time * 0.5) * 30;
+					light2.position.z = Math.sin(time * 0.7) * 30;
+
+					light3.position.x = Math.sin(time * 0.7) * 30;
+					light3.position.y = Math.cos(time * 0.3) * 30;
+					light3.position.z = Math.sin(time * 0.5) * 30;
 			};
 
 			// draw scene
