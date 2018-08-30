@@ -34,26 +34,41 @@
 
 			controls = new THREE.OrbitControls(camera, renderer.domElement);
 
-			var loader = new THREE.OBJLoader2();
+			// var loader = new THREE.OBJLoader2();
+			//
+			// // loader.load
+			// // (
+			// // 	'models/female02.obj',
+			// // 	function (object){
+			// // 		scene.add(object);
+			// // 	}
+			// // );
+			//
+			//
+			// // function called on successful load
+			// var callbackOnLoad = function ( event ) {
+			// 	scene.add( event.detail.loaderRootNode );
+			// };
+			//
+			//
+			//
+			// // load a resource from provided URL synchronously
+			// loader.load( 'models/box-normals-out.obj', callbackOnLoad, null, null, null, false );
 
-			// loader.load
-			// (
-			// 	'models/female02.obj',
-			// 	function (object){
-			// 		scene.add(object);
-			// 	}
-			// );
+
+			var surfaceFromBackend = [0,1.75,.75, .5,1.5,.5, -.5,1.5,.5, -.75,1.25,.25, .5,1.5,.5, -.5,1.5,.5, .75,1.25,.25, -.75,1.25,.25, .5,1.5,.5, .75,1.25,.25, -.75,1.25,.25, 1,1,0, 1,1,0, -1,1,0, -.75,1.25,.25, -.5,0,.25, 1,1,0, -1,1,0, .5,0,.25, -.5,0,.25, 1,1,0, .5,0,.25, -.5,0,.25, 1,-1,0, -.5,0,.25, 1,-1,0, -1,-1,0, 1,-1,0, -1,-1,0, .75,-1.25,.25, -1,-1,0, .75,-1.25,.25, -.75,-1.25,.25, .75,-1.25,.25, -.75,-1.25,.25, .5,-1.5,.5, -.75,-1.25,.25, .5,-1.5,.5, -.5,-1.5,.5, .5,-1.5,.5, -.5,-1.5,.5,0,-1.75,.75];
+			console.log(testArray);
+			var geometry = new THREE.BufferGeometry();
+			// create a simple square shape. We duplicate the top left and bottom right
+			// vertices because each vertex needs to appear once per triangle.
+			var vertices = new Float32Array(surfaceFromBackend);
 
 
-			// function called on successful load
-			var callbackOnLoad = function ( event ) {
-				scene.add( event.detail.loaderRootNode );
-			};
-
-
-
-			// load a resource from provided URL synchronously
-			loader.load( 'models/box-normals-out.obj', callbackOnLoad, null, null, null, false );
+			// itemSize = 3 because there are 3 values (components) per vertex
+			geometry.addAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
+			var material = new THREE.MeshLambertMaterial( { color: 0xffffff, side: THREE.DoubleSide } );
+			var mesh = new THREE.Mesh( geometry, material );
+			scene.add(mesh);
 
 
 			//create the shape
