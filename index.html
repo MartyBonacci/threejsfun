@@ -56,23 +56,433 @@
 			// loader.load( 'models/box-normals-out.obj', callbackOnLoad, null, null, null, false );
 
 
+			// var surfaceFromBackend = [0,1.75,.75, .5,1.5,.5, -.5,1.5,.5, -.75,1.25,.25, .5,1.5,.5, -.5,1.5,.5, .75,1.25,.25, -.75,1.25,.25, .5,1.5,.5, .75,1.25,.25, -.75,1.25,.25, 1,1,0, 1,1,0, -1,1,0, -.75,1.25,.25, -.5,0,.25, 1,1,0, -1,1,0, .5,0,.25, -.5,0,.25, 1,1,0, .5,0,.25, -.5,0,.25, 1,-1,0, -.5,0,.25, 1,-1,0, -1,-1,0, 1,-1,0, -1,-1,0, .75,-1.25,.25, -1,-1,0, .75,-1.25,.25, -.75,-1.25,.25, .75,-1.25,.25, -.75,-1.25,.25, .5,-1.5,.5, -.75,-1.25,.25, .5,-1.5,.5, -.5,-1.5,.5, .5,-1.5,.5, -.5,-1.5,.5,0,-1.75,.75];
+			// var geometry = new THREE.BufferGeometry();
+			// // create a simple square shape. We duplicate the top left and bottom right
+			// // vertices because each vertex needs to appear once per triangle.
+			// var vertices = new Float32Array(surfaceFromBackend);
+			//
+			//
+			// // itemSize = 3 because there are 3 values (components) per vertex
+			// geometry.addAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
+			//
+			// // var material = new THREE.MeshPhongMaterial( {
+			// // 	color: 0xdddddd,
+			// // 	specular: 0x222222,
+			// // 	shininess: 35,
+			// // 	map: textureLoader.load( "models/json/leeperrysmith/Map-COL.jpg" ),
+			// // 	specularMap: textureLoader.load( "models/json/leeperrysmith/Map-SPEC.jpg" ),
+			// // 	normalMap: textureLoader.load( "models/json/leeperrysmith/Infinite-Level_02_Tangent_SmoothUV.jpg" ),
+			// // 	normalScale: new THREE.Vector2( 0.8, 0.8 )
+			// // } );
+			//
+			// var material = new THREE.MeshPhongMaterial( {map: new THREE.TextureLoader().load('images/matt645x3000.jpg'), side: THREE.DoubleSide } );
+			// var mesh = new THREE.Mesh( geometry, material );
+			// scene.add(mesh);
+			//
+			// var curve = new THREE.ArcCurve(
+			// 	0,  0,            // ax, aY
+			// 	5,           // xRadius, yRadius
+			// 	0,  1 * Math.PI,  // aStartAngle, aEndAngle
+			// 	// true            // aClockwise
+			// );
+			//
+			// var points = curve.getPoints( 50 );
+			// var geometry = new THREE.BufferGeometry().setFromPoints( points );
+			//
+			// var material = new THREE.LineBasicMaterial( { color : 0xff0000 } );
+			//
+			// // Create the final object to add to the scene
+			// var ellipse = new THREE.Line( geometry, material );
+			// scene.add(ellipse);
+			//
+			//
+			// var cubicBezierCurve = new THREE.CubicBezierCurve3(
+			// 	new THREE.Vector3( -10, -5, 0 ),
+			// 	new THREE.Vector3( -5, 10, 0 ),
+			// 	new THREE.Vector3( 0, -10, 0 ),
+			// 	new THREE.Vector3( 5, 5, 0 )
+			// );
+			//
+			// var lineCurve = new THREE.LineCurve3(
+			// 	new THREE.Vector3( 5, 5, 0 ),
+			// 	new THREE.Vector3( 10, 0, 0 )
+			// );
+			//
+			// var secondLineCurve = new THREE.LineCurve3(
+			// 	new THREE.Vector3( 10, 0, 0 ),
+			// 	new THREE.Vector3( -10, -5, 0 )
+			// );
+			//
+			// // var circ = new THREE.arc(1,1,5,5,0,Math.PI,true);
+			//
+			// var curvePath = new THREE.Path();
+			// curvePath.add( cubicBezierCurve );
+			// curvePath.add( lineCurve );
+			// curvePath.add( secondLineCurve );
+			// // curvePath.add(circ);
+			// // curvePath.closePath();
+			//
+			// // create curve mesh
+			//
+			// var geometry = new THREE.Geometry();
+			// geometry.vertices = curvePath.getPoints( 100 );
+			//
+			// var material = new THREE.LineBasicMaterial( { color : 0xff0000 } );
+			// var curveObject = new THREE.Line( geometry, material );
+			// scene.add( curveObject );
+			//
+			//
+			//
+
+
+
+
+			// var path = new THREE.Path();
+			//
+			// path.lineTo( 0, 0.8 );
+			// path.quadraticCurveTo( 0, 1, 0.2, 1 );
+			// path.lineTo( 1, 1 );
+			//
+			// var points = path.getPoints();
+			//
+			// var geometry = new THREE.BufferGeometry().setFromPoints( points );
+			// var material = new THREE.LineBasicMaterial( { color: 0xffffff } );
+			//
+			// var line = new THREE.Line( geometry, material );
+			// scene.add( line );
+
+
+
+
+			// //Create a closed wavey loop
+			// var curve = new THREE.CatmullRomCurve3( [
+			// 	new THREE.Vector3( -10, 0, 10 ),
+			// 	new THREE.Vector3( -5, 5, 5 ),
+			// 	new THREE.Vector3( 0, 0, 0 ),
+			// 	new THREE.Vector3( 5, -5, 5 ),
+			// 	new THREE.Vector3( 10, 0, 10 )
+			// ], true);
+			//
+			// var points = curve.getPoints( 50 );
+			// var geometry = new THREE.BufferGeometry().setFromPoints( points );
+			//
+			// var material = new THREE.LineBasicMaterial( { color : 0xff0000 } );
+			//
+			// // Create the final object to add to the scene
+			// var curveObject = new THREE.Line( geometry, material );
+			// scene.add(curveObject);
+
+
+
+
+			// var surfaceFromBackend = [0,1.75,.75, .5,1.5,.5, -.5,1.5,.5, -.75,1.25,.25, .5,1.5,.5, -.5,1.5,.5, .75,1.25,.25, -.75,1.25,.25, .5,1.5,.5, .75,1.25,.25, -.75,1.25,.25, 1,1,0, 1,1,0, -1,1,0, -.75,1.25,.25, -.5,0,.25, 1,1,0, -1,1,0, .5,0,.25, -.5,0,.25, 1,1,0, .5,0,.25, -.5,0,.25, 1,-1,0, -.5,0,.25, 1,-1,0, -1,-1,0, 1,-1,0, -1,-1,0, .75,-1.25,.25, -1,-1,0, .75,-1.25,.25, -.75,-1.25,.25, .75,-1.25,.25, -.75,-1.25,.25, .5,-1.5,.5, -.75,-1.25,.25, .5,-1.5,.5, -.5,-1.5,.5, .5,-1.5,.5, -.5,-1.5,.5,0,-1.75,.75];
+			// var geometry = new THREE.BufferGeometry();
+			// // create a simple square shape. We duplicate the top left and bottom right
+			// // vertices because each vertex needs to appear once per triangle.
+			// var vertices = new Float32Array(surfaceFromBackend);
+			//
+			//
+			// // itemSize = 3 because there are 3 values (components) per vertex
+			// geometry.addAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
+
+
+
+			//Create a closed wavey loop
+			var curve = new THREE.CatmullRomCurve3( [
+				new THREE.Vector3(0,1.75,.75),
+				new THREE.Vector3(.5,1.5,.5),
+				new THREE.Vector3(.75,1.25,.25),
+				new THREE.Vector3(1,1,0),
+				new THREE.Vector3(.5,0,.25),
+				new THREE.Vector3(1,-1,0),
+				new THREE.Vector3( .75,-1.25,.25),
+				new THREE.Vector3( .5,-1.5,.5 ),
+				new THREE.Vector3( 0,-1.75,.75),
+
+				new THREE.Vector3( -.5,-1.5,.5 ),
+				new THREE.Vector3( -.75,-1.25,.25),
+				new THREE.Vector3( -1,-1,0),
+				new THREE.Vector3( -.5,0,.25),
+				new THREE.Vector3( -1,1,0),
+				new THREE.Vector3( -.75,1.25,.25),
+				new THREE.Vector3( -.5,1.5,.5),
+			], true);
+
+			var points = curve.getPoints( 50);
+			var geometry = new THREE.BufferGeometry().setFromPoints( points );
+
+			var material = new THREE.LineBasicMaterial( { color : 0xff0000 } );
+
+			// Create the final object to add to the scene
+			var curveObject = new THREE.Line( geometry, material );
+			scene.add(curveObject);
+
+			var shape = new THREE.Shape(curve.getPoints(50)); // make a shape
+			// shape.holes.push(new THREE.Path(closedSpline1.getPoints(100))); // add a hole
+			var shapeGeometry = new THREE.ShapeGeometry(shape); // create a geometry
+			var test=[];
+			var vertmesh=[];
+			console.log(shapeGeometry.vertices.length);
+			vertmesh.push(shapeGeometry.vertices[0].x);
+			vertmesh.push(shapeGeometry.vertices[0].y);
+			vertmesh.push(shapeGeometry.vertices[0].z);
+			vertmesh.push(shapeGeometry.vertices[1].x);
+			vertmesh.push(shapeGeometry.vertices[1].y);
+			vertmesh.push(shapeGeometry.vertices[1].z);
+			vertmesh.push(shapeGeometry.vertices[shapeGeometry.vertices.length-1].x);
+			vertmesh.push(shapeGeometry.vertices[shapeGeometry.vertices.length-1].y);
+			vertmesh.push(shapeGeometry.vertices[shapeGeometry.vertices.length-1].z);
+			for(let i=2; i<shapeGeometry.vertices.length/2; i++) {
+				console.log(i);
+				console.log(shapeGeometry.vertices[i]);
+				test.push(shapeGeometry.vertices[i]);
+				vertmesh.push(shapeGeometry.vertices[i-1].x);
+				vertmesh.push(shapeGeometry.vertices[i-1].y);
+				vertmesh.push(0);
+
+				vertmesh.push(shapeGeometry.vertices[shapeGeometry.vertices.length-i].x);
+				vertmesh.push(shapeGeometry.vertices[shapeGeometry.vertices.length-i].y);
+				vertmesh.push(0);
+
+				vertmesh.push(shapeGeometry.vertices[i].x);
+				vertmesh.push(shapeGeometry.vertices[i].y);
+				vertmesh.push(0);
+
+				vertmesh.push(shapeGeometry.vertices[shapeGeometry.vertices.length-i+1].x);
+				vertmesh.push(shapeGeometry.vertices[shapeGeometry.vertices.length-i+1].y);
+				vertmesh.push(0);
+
+				vertmesh.push(shapeGeometry.vertices[shapeGeometry.vertices.length-i].x);
+				vertmesh.push(shapeGeometry.vertices[shapeGeometry.vertices.length-i].y);
+				vertmesh.push(0);
+
+				vertmesh.push(shapeGeometry.vertices[i-1].x);
+				vertmesh.push(shapeGeometry.vertices[i-1].y);
+				vertmesh.push(0);
+
+				shapeGeometry.vertices[i].z = Math.pow(2, i/20);
+				shapeGeometry.vertices[shapeGeometry.vertices.length-i].z = Math.pow(2, i/20);
+			}
+
+			vertmesh.push(shapeGeometry.vertices[shapeGeometry.vertices.length/2+1].x);
+			vertmesh.push(shapeGeometry.vertices[shapeGeometry.vertices.length/2+1].y);
+			vertmesh.push(0);
+			vertmesh.push(shapeGeometry.vertices[shapeGeometry.vertices.length/2-1].x);
+			vertmesh.push(shapeGeometry.vertices[shapeGeometry.vertices.length/2-1].y);
+			vertmesh.push(0);
+			vertmesh.push(shapeGeometry.vertices[shapeGeometry.vertices.length/2].x);
+			vertmesh.push(shapeGeometry.vertices[shapeGeometry.vertices.length/2].y);
+			vertmesh.push(0);
+
+			console.log(test);
+			console.log(vertmesh);
+
+			var track = new THREE.Mesh(shapeGeometry, new THREE.MeshLambertMaterial({
+				color: "yellow",
+				side: THREE.DoubleSide,
+				wireframe: true
+			})); // create a track from the geometry
+			// scene.add(track);
+
+
 			var surfaceFromBackend = [0,1.75,.75, .5,1.5,.5, -.5,1.5,.5, -.75,1.25,.25, .5,1.5,.5, -.5,1.5,.5, .75,1.25,.25, -.75,1.25,.25, .5,1.5,.5, .75,1.25,.25, -.75,1.25,.25, 1,1,0, 1,1,0, -1,1,0, -.75,1.25,.25, -.5,0,.25, 1,1,0, -1,1,0, .5,0,.25, -.5,0,.25, 1,1,0, .5,0,.25, -.5,0,.25, 1,-1,0, -.5,0,.25, 1,-1,0, -1,-1,0, 1,-1,0, -1,-1,0, .75,-1.25,.25, -1,-1,0, .75,-1.25,.25, -.75,-1.25,.25, .75,-1.25,.25, -.75,-1.25,.25, .5,-1.5,.5, -.75,-1.25,.25, .5,-1.5,.5, -.5,-1.5,.5, .5,-1.5,.5, -.5,-1.5,.5,0,-1.75,.75];
-			console.log(testArray);
 			var geometry = new THREE.BufferGeometry();
 			// create a simple square shape. We duplicate the top left and bottom right
 			// vertices because each vertex needs to appear once per triangle.
-			var vertices = new Float32Array(surfaceFromBackend);
+			var vertices = new Float32Array(vertmesh);
 
 
 			// itemSize = 3 because there are 3 values (components) per vertex
 			geometry.addAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
-			var material = new THREE.MeshLambertMaterial( { color: 0xffffff, side: THREE.DoubleSide } );
+
+			// var material = new THREE.MeshPhongMaterial( {
+			// 	color: 0xdddddd,
+			// 	specular: 0x222222,
+			// 	shininess: 35,
+			// 	map: textureLoader.load( "models/json/leeperrysmith/Map-COL.jpg" ),
+			// 	specularMap: textureLoader.load( "models/json/leeperrysmith/Map-SPEC.jpg" ),
+			// 	normalMap: textureLoader.load( "models/json/leeperrysmith/Infinite-Level_02_Tangent_SmoothUV.jpg" ),
+			// 	normalScale: new THREE.Vector2( 0.8, 0.8 )
+			// } );
+
+			var material = new THREE.MeshPhongMaterial( {
+				color: "green",
+				side: THREE.DoubleSide,
+				wireframe: true} );
 			var mesh = new THREE.Mesh( geometry, material );
 			scene.add(mesh);
 
+			// var length = 12, width = 8;
+			//
+			// var shape = new THREE.Shape();
+			// shape.moveTo( 0,0 );
+			// shape.lineTo( 0, width );
+			// shape.lineTo( length, width );
+			// shape.lineTo( length, 0 );
+			// shape.lineTo( 0, 0 );
+			//
+			// var extrudeSettings = {
+			//
+			// 	depth: 1,
+			//
+			// };
+			//
+			// var geometry = new THREE.ExtrudeGeometry( shape, extrudeSettings );
+			// var material = new THREE.MeshNormalMaterial( { color: 0x00ff00 } );
+			// var mesh = new THREE.Mesh( geometry, material ) ;
+			// scene.add( mesh );
 
-			//create the shape
-			// var geometry = new THREE.BoxGeometry(2,2,2);
+
+
+
+
+
+
+
+			// const width2 = 100, height2 = 100, width_segments =1, height_segments = 100;
+			// plane = new THREE.PlaneGeometry(width2, height2, width_segments, height_segments);
+			// console.log(plane.vertices.length);
+			// for(let i=0; i<plane.vertices.length/2; i++) {
+			// 	plane.vertices[2*i].z = Math.pow(2, i/10);
+			// 	plane.vertices[2*i+1].z = Math.pow(2, i/10);
+			// }
+			//
+			// mesh2 = new THREE.Mesh(plane, new THREE.MeshBasicMaterial({color: 0xffffff, side: THREE.DoubleSide}));
+			// mesh2.doubleSided = true;
+			// mesh2.rotation.y = Math.PI/2-0.5;
+			// scene.add(mesh2);
+
+
+
+
+			// // NURBS surface
+			// var nsControlPoints = [
+			// 	[
+			// 		new THREE.Vector4 ( -200, -200, 100, 1 ),
+			// 		new THREE.Vector4 ( -200, -100, -200, 1 ),
+			// 		new THREE.Vector4 ( -200, 100, 250, 1 ),
+			// 		new THREE.Vector4 ( -200, 200, -100, 1 )
+			// 	],
+			// 	[
+			// 		new THREE.Vector4 ( 0, -200, 0, 1 ),
+			// 		new THREE.Vector4 ( 0, -100, -100, 5 ),
+			// 		new THREE.Vector4 ( 0, 100, 150, 5 ),
+			// 		new THREE.Vector4 ( 0, 200, 0, 1 )
+			// 	],
+			// 	[
+			// 		new THREE.Vector4 ( 200, -200, -100, 1 ),
+			// 		new THREE.Vector4 ( 200, -100, 200, 1 ),
+			// 		new THREE.Vector4 ( 200, 100, -250, 1 ),
+			// 		new THREE.Vector4 ( 200, 200, 100, 1 )
+			// 	]
+			// ];
+			// var degree1 = 2;
+			// var degree2 = 3;
+			// var knots1 = [0, 0, 0, 1, 1, 1];
+			// var knots2 = [0, 0, 0, 0, 1, 1, 1, 1];
+			// var nurbsSurface = new THREE.NURBSSurface(degree1, degree2, knots1, knots2, nsControlPoints);
+			// var map = new THREE.TextureLoader().load( 'textures/UV_Grid_Sm.jpg' );
+			// map.wrapS = map.wrapT = THREE.RepeatWrapping;
+			// map.anisotropy = 16;
+			// function getSurfacePoint( u, v, target ) {
+			// 	return nurbsSurface.getPoint( u, v, target );
+			// }
+			// var geometry = new THREE.ParametricBufferGeometry( getSurfacePoint, 20, 20 );
+			// var material = new THREE.MeshLambertMaterial( { map: map, side: THREE.DoubleSide } );
+			// var object = new THREE.Mesh( geometry, material );
+			// object.position.set( - 200, 100, 0 );
+			// object.scale.multiplyScalar( 1 );
+			// scene.add( object );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			// var closedSpline = new THREE.CatmullRomCurve3([
+			// 	new THREE.Vector3(-60, -100, 0),
+			// 	new THREE.Vector3(-60, 20, 0),
+			// 	new THREE.Vector3(-60, 120, 10),
+			// 	new THREE.Vector3(60, 120, 0),
+			// 	new THREE.Vector3(60, -100, 0)
+			// ]);
+			// closedSpline.curveType = 'catmullrom';
+			// closedSpline.closed = true;
+			//
+			// var closedSpline1 = new THREE.CatmullRomCurve3([
+			// 	new THREE.Vector3(-50, -90, 0),
+			// 	new THREE.Vector3(-50, 10, 0),
+			// 	new THREE.Vector3(-50, 110, 0),
+			// 	new THREE.Vector3(50, 110, 0),
+			// 	new THREE.Vector3(50, -90, 0)
+			// ]);
+			// closedSpline1.curveType = 'catmullrom';
+			// closedSpline1.closed = true;
+			//
+			// var tubeGeometry = new THREE.TubeBufferGeometry(closedSpline, 100, 1, 5, true);
+			//
+			// var material = new THREE.MeshLambertMaterial({
+			// 	color: 0xb00000,
+			// 	wireframe: false
+			// });
+			// var mesh = new THREE.Mesh(tubeGeometry, material);
+			// scene.add(mesh);
+			//
+			// var tubeGeometry1 = new THREE.TubeBufferGeometry(closedSpline1, 100, 1, 5,
+			// 	true);
+			//
+			// var material1 = new THREE.MeshLambertMaterial({
+			// 	color: 0xb00000,
+			// 	wireframe: false
+			// });
+			// var mesh1 = new THREE.Mesh(tubeGeometry1, material1);
+			// scene.add(mesh1);
+			//
+			// // magic starts here
+			// var shape = new THREE.Shape(closedSpline.getPoints(100)); // make a shape
+			// // shape.holes.push(new THREE.Path(closedSpline1.getPoints(100))); // add a hole
+			// var shapeGeometry = new THREE.ShapeGeometry(shape); // create a geometry
+			// var track = new THREE.Mesh(shapeGeometry, new THREE.MeshLambertMaterial({
+			// 	color: "yellow",
+			// 	wireframe: false
+			// })); // create a track from the geometry
+			// scene.add(track);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			// // create the shape
+			// var geometry2 = new THREE.BoxGeometry(1,1,1);
 			// var cubeMaterials = [
 			// 	new THREE.MeshLambertMaterial({map: new THREE.TextureLoader().load('images/jim606x3000.jpg'),side: THREE.DoubleSide}), // right
 			// 	new THREE.MeshPhongMaterial({map: new THREE.TextureLoader().load('images/chara.jpg'),side: THREE.DoubleSide}), // left
@@ -81,10 +491,10 @@
 			// 	new THREE.MeshPhongMaterial({map: new THREE.TextureLoader().load('images/frisk.jpg'),side: THREE.DoubleSide}), // front
 			// 	new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('images/matt645x3000.jpg'),side: THREE.DoubleSide}), // back
 			// ];
-
-			//create material color or image texture
-			// var material = new THREE.MeshFaceMaterial(cubeMaterials);
-			// var cube = new THREE.Mesh(geometry, material);
+			//
+			// // create material color or image texture
+			// var material2 = new THREE.MeshFaceMaterial(cubeMaterials);
+			// var cube = new THREE.Mesh(geometry2, material2);
 			// scene.add(cube);
 
 			camera.position.z =13;
