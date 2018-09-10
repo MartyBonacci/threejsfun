@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>fun with three.js</title>
+
+		<style>
+			body {margin: 0}
+			canvas {width: 100%; height: 100%}
+		</style>
+	</head>
+	<body>
+		<script src="/node_modules/three/examples/js/Detector.js"></script>
+		<script src="js/three.js"></script>
+		<script src="js/OrbitControls.js"></script>
+		<script src="/node_modules/three/examples/js/libs/dat.gui.min.js"></script>
+		<script src="node_modules/three/examples/js/loaders/LoaderSupport.js"></script>
+		<script src="js/OBJLoader2.js"></script>
+
+
+		<script>
+			var scene = new THREE.Scene();
+			var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000);
+			var renderer = new THREE.WebGLRenderer();
+			renderer.setSize(window.innerWidth, window.innerHeight);
+			document.body.appendChild(renderer.domElement);
+
+			window.addEventListener('resize', function() {
+				var width = window.innerWidth;
+				var height = window.innerHeight;
+				renderer.setSize(width,height);
+				camera.aspect = width/height;
+				camera.updateProjectionMatrix();
+			});
+
+			controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+			//Create a closed wavey loop
+			var curve = new THREE.CatmullRomCurve3( [
+				new THREE.Vector3(0,1.75,.75),
+				new THREE.Vector3(.5,1.5,.5),
+				new THREE.Vector3(.75,1.25,.25),
+				new THREE.Vector3(1,1,0),
+				new THREE.Vector3(.5,0,.25),
+				new THREE.Vector3(1,-1,0),
+				new THREE.Vector3( .75,-1.25,.25),
+				new THREE.Vector3( .5,-1.5,.5 ),
+				new THREE.Vector3( 0,-1.75,.75),
+
+				new THREE.Vector3( -.5,-1.5,.5 ),
+				new THREE.Vector3( -.75,-1.25,.25),
+				new THREE.Vector3( -1,-1,0),
+				new THREE.Vector3( -.5,0,.25),
+				new THREE.Vector3( -1,1,0),
+				new THREE.Vector3( -.75,1.25,.25),
+				new THREE.Vector3( -.5,1.5,.5),
+			], true);
+
+			var points = curve.getPoints( 50);
+			var geometry = new THREE.BufferGeometry().setFromPoints( points );
+
+			var material = new THREE.LineBasicMaterial( { color : 0xff0000 } );
+
+			// Create the final object to add to the scene
+			var curveObject = new THREE.Line( geometry, material );
+			// scene.add(curveObject);
+
+			var shape = new THREE.Shape(curve.getPoints(50)); // make a shape
+			// shape.holes.push(new THREE.Path(closedSpline1.getPoints(100))); // add a hole
+			var shapeGeometry = new THREE.ShapeGeometry(shape); // create a geometry
+			var test=[];
+			var vertmesh=[];
+			console.log(shapeGeometry.vertices.length);
+			vertmesh.push(shapeGeometry.vertices[0].x);
+			vertmesh.push(shapeGeometry.vertices[0].y);
+			vertmesh.push(shapeGeometry.vertices[0].z);
+			vertmesh.push(shapeGeometry.vertices[1].x);
+			vertmesh.push(shapeGeometry.vertices[1].y);
+			vertmesh.push(shapeGeometry.vertices[1].z);
+			vertmesh.push(shapeGeometry.vertices[shapeGeometry.vertices.length-1].x);
+			vertmesh.push(shapeGeometry.vertices[shapeGeometry.vertices.length-1].y);
+			vertmesh.push(shapeGeometry.vertices[shapeGeometry.vertices.length-1].z);
+			for(let i=2; i<shapeGeometry.vertices.length/2; i++) {
+				console.log(i);
+				console.log(shapeGeometry.vertices[i]);
+				test.push(shapeGeometry.vertices[i]);
+				vertmesh.push(shapeGeometry.vertices[i-1].x);
+				vertmesh.push(shapeGeometry.vertices[i-1].y);
+				vertmesh.push(0);
+
+				vertmesh.push(shapeGeometry.vertices[shapeGeometry.vertices.length-i].x);
+				vertmesh.push(shapeGeometry.vertices[shapeGeometry.vertices.length-i].y);
+				vertmesh.push(0);
+
+				vertmesh.push(shapeGeometry.vertices[i].x);
+				vertmesh.push(shapeGeometry.vertices[i].y);
+				vertmesh.push(0);
+
+				vertmesh.push(shapeGeometry.vertices[shapeGeometry.vertices.length-i+1].x);
+				vertmesh.push(shapeGeometry.vertices[shapeGeometry.vertices.length-i+1].y);
+				vertmesh.push(0);
+
+				vertmesh.push(shapeGeometry.vertices[shapeGeometry.vertices.length-i].x);
+				vertmesh.push(shapeGeometry.vertices[shapeGeometry.vertices.length-i].y);
+				vertmesh.push(0);
+
+				vertmesh.push(shapeGeometry.vertices[i-1].x);
+				vertmesh.push(shapeGeometry.vertices[i-1].y);
+				vertmesh.push(0);
+
+				shapeGeometry.vertices[i].z = Math.pow(2, i/20);
+				shapeGeometry.vertices[shapeGeometry.vertices.length-i].z = Math.pow(2, i/20);
+			}
+
+			vertmesh.push(shapeGeometry.vertices[shapeGeometry.vertices.length/2+1].x);
+			vertmesh.push(shapeGeometry.vertices[shapeGeometry.vertices.length/2+1].y);
+			vertmesh.push(0);
+			vertmesh.push(shapeGeometry.vertices[shapeGeometry.vertices.length/2-1].x);
+			vertmesh.push(shapeGeometry.vertices[shapeGeometry.vertices.length/2-1].y);
+			vertmesh.push(0);
+			vertmesh.push(shapeGeometry.vertices[shapeGeometry.vertices.length/2].x);
+			vertmesh.push(shapeGeometry.vertices[shapeGeometry.vertices.length/2].y);
+			vertmesh.push(0);
+
+			console.log(test);
+			console.log(vertmesh);
+
+			var track = new THREE.Mesh(shapeGeometry, new THREE.MeshLambertMaterial({
+				color: "yellow",
+				side: THREE.DoubleSide,
+				wireframe: true
+			})); // create a track from the geometry
+			// scene.add(track);
+
+
+			// var surfaceFromBackend = [0,1.75,.75, .5,1.5,.5, -.5,1.5,.5, -.75,1.25,.25, .5,1.5,.5, -.5,1.5,.5, .75,1.25,.25, -.75,1.25,.25, .5,1.5,.5, .75,1.25,.25, -.75,1.25,.25, 1,1,0, 1,1,0, -1,1,0, -.75,1.25,.25, -.5,0,.25, 1,1,0, -1,1,0, .5,0,.25, -.5,0,.25, 1,1,0, .5,0,.25, -.5,0,.25, 1,-1,0, -.5,0,.25, 1,-1,0, -1,-1,0, 1,-1,0, -1,-1,0, .75,-1.25,.25, -1,-1,0, .75,-1.25,.25, -.75,-1.25,.25, .75,-1.25,.25, -.75,-1.25,.25, .5,-1.5,.5, -.75,-1.25,.25, .5,-1.5,.5, -.5,-1.5,.5, .5,-1.5,.5, -.5,-1.5,.5,0,-1.75,.75];
+			var geometry = new THREE.BufferGeometry();
+			// create a simple square shape. We duplicate the top left and bottom right
+			// vertices because each vertex needs to appear once per triangle.
+			var vertices = new Float32Array(vertmesh);
+
+
+			// itemSize = 3 because there are 3 values (components) per vertex
+			geometry.addAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
+
+			var material = new THREE.MeshPhongMaterial( {
+				color: "green",
+				side: THREE.DoubleSide,
+				wireframe: true} );
+			var mesh = new THREE.Mesh( geometry, material );
+			scene.add(mesh);
+
+
+
+			camera.position.z =13;
+
+
+			var ambientLigth = new THREE.AmbientLight(0xffffff, 0.8);
+			scene.add(ambientLigth);
+
+			var light1 = new THREE.PointLight(0xff0040, 1.2, 50);
+			scene.add(light1);
+
+			var light2 = new THREE.PointLight(0x0040ff, 1.1, 50);
+			scene.add(light2);
+
+			var light3 = new THREE.PointLight(0x80ff80, 1.05, 50);
+			scene.add(light3);
+
+			var directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+			directionalLight.position.set(0, 1, 0);
+			scene.add(directionalLight);
+
+			var spotLight = new THREE.SpotLight(0xff45f6, 25);
+			spotLight.position.set(0, 3, 0);
+			scene.add(spotLight);
+
+			// game logic
+			var update = function(){
+				// mesh.rotation.x += .01;
+				// mesh.rotation.y += .005;
+
+				var time = Date.now() * 0.0005;
+				light1.position.x = Math.sin(time * 0.7) * 30;
+				light1.position.y = Math.cos(time * 0.5) * 30;
+				light1.position.z = Math.cos(time * 0.3) * 30;
+
+				light2.position.x = Math.cos(time * 0.3) * 30;
+				light2.position.y = Math.sin(time * 0.5) * 30;
+				light2.position.z = Math.sin(time * 0.7) * 30;
+
+				light3.position.x = Math.sin(time * 0.7) * 30;
+				light3.position.y = Math.cos(time * 0.3) * 30;
+				light3.position.z = Math.sin(time * 0.5) * 30;
+			};
+
+			// draw scene
+			var render = function() {
+				renderer.render(scene, camera);
+			};
+
+			// run game loop (update, render, repeat)
+			var GameLoop = function(){
+				requestAnimationFrame( GameLoop);
+				update();
+				render();
+			};
+
+			GameLoop();
+
+		</script>
+	</body>
+</html>
